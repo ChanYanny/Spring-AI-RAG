@@ -1,0 +1,81 @@
+请根据以下信息，编写UI对接服务端接口；
+
+流式GET请求接口，由 SpringBoot Spring AI 框架实现，接口如下:
+
+    @GetMapping("/ai/generateStream")
+    @Override
+    public Flux<ChatResponse> generateStream(@RequestParam(value = "model") String model,
+                                             @RequestParam(value = "message") String message) {
+        Prompt prompt = new Prompt(message, OllamaChatOptions.builder().model(model).build());
+        return chatModel.stream(prompt);
+    }
+
+访问地址为：http://localhost:8081/ollama/ai/generateStream?model=deepseek-r1:1.5b&message=给我讲个笑话
+
+流式GET响应数据，数组中的一条对象如下：
+
+{
+		"metadata": {
+			"id": "",
+			"model": "deepseek-r1:1.5b",
+			"rateLimit": {
+				"requestsLimit": 0,
+				"requestsRemaining": 0,
+				"requestsReset": "PT0S",
+				"tokensLimit": 0,
+				"tokensRemaining": 0,
+				"tokensReset": "PT0S"
+			},
+			"usage": {
+				"promptTokens": 7,
+				"completionTokens": 650,
+				"totalTokens": 657
+			},
+			"promptMetadata": [],
+			"empty": false
+		},
+		"results": [
+			{
+				"metadata": {
+					"finishReason": "stop",
+					"contentFilters": [],
+					"empty": true
+				},
+				"output": {
+					"messageType": "ASSISTANT",
+					"metadata": {
+						"messageType": "ASSISTANT"
+					},
+					"toolCalls": [],
+					"media": [],
+					"text": ""
+				}
+			}
+		],
+		"result": {
+			"metadata": {
+				"finishReason": "stop",
+				"contentFilters": [],
+				"empty": true
+			},
+			"output": {
+				"messageType": "ASSISTANT",
+				"metadata": {
+					"messageType": "ASSISTANT"
+				},
+				"toolCalls": [],
+				"media": [],
+				"text": ""
+			}
+		}
+	}
+
+
+如描述说明，帮我编写一款仿造Claude界面的AI对话页面。
+
+1. 输入内容，点击发送按钮，调用服务端流式请求接口，前端渲染展示，注意回复内容需支持markdown格式。
+2. 以html、js代码方式实现，css样式使用 tailwind 编写。
+3. 可通过 const eventSource = new EventSource(apiUrl)，调用api接口。
+4. 从 result.output.text 获取应答的文本展示。注意 text 可能为空。
+5. 从 result.metadata.finishReason = STOP 获取，结束标识。
+6. 注意整体样式的简洁美观。
