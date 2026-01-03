@@ -22,6 +22,19 @@
         <spring-ai.version>1.1.2</spring-ai.version>
     </properties>
 
+    <dependencies>
+        <!--接入 ollama 模型-->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-ollama</artifactId>
+        </dependency>
+        <!-- 手动配置 OllamaChatModel -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-ollama</artifactId>
+        </dependency>
+    </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <!-- 引入 SpringBoot 依赖管理清单 -->
@@ -39,6 +52,17 @@
                 <version>${spring-ai.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- 工程模块管理 -->
+            <dependency>
+                <groupId>io.github.chanyanny</groupId>
+                <artifactId>rag-api</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.chanyanny</groupId>
+                <artifactId>rag-trigger</artifactId>
+                <version>1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
