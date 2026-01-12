@@ -28,3 +28,12 @@ spring:
       chat:
         options:
           model: deepseek-r1:1.5b
+      embedding:
+        options:
+          model: nomic-embed-text
+    # 向量存储
+    vectorstore:
+      pinecone:
+        api-key: ${PINECONE_API_KEY}
+        index-name: ai-knowledge
+        namespace: rag
