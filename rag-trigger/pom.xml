@@ -20,6 +20,26 @@
             <groupId>io.github.chanyanny</groupId>
             <artifactId>rag-api</artifactId>
         </dependency>
+        <!-- pinecone 向量存储 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-vector-store-pinecone</artifactId>
+        </dependency>
+        <!-- 手动配置 pinecone -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-pinecone-store</artifactId>
+        </dependency>
+        <!-- DocumentReader -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-tika-document-reader</artifactId>
+        </dependency>
+        <!-- Advisor 支持RAG -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-advisors-vector-store</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
