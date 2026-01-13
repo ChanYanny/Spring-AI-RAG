@@ -1,5 +1,6 @@
 package io.github.chanyanny.rag.api;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -25,5 +26,16 @@ public interface IRAGService {
      * @throws Exception
      */
     Response<String> uploadFile(String tag, List<MultipartFile> files);
+
+
+    /**
+     * 分析 Git 仓库
+     * 
+     * @param repoURL 仓库 URL
+     * @param token 仓库 token
+     * @return 
+     * @throws Exception
+     */
+    Response<String> analyzeGitRepository(String repoURL, String token) throws Exception;
 
 }
